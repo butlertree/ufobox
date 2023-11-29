@@ -1,0 +1,30 @@
+.card {
+    border: 3px solid green;
+    padding: 10px;
+    position: relative; /* Position the card as a reference for absolute positioning */
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Position the card header as a reference for absolute positioning */
+  }
+  
+  .location {
+    text-align: center;
+    font-weight: bold;
+    max-width: 80%; /* Adjust the maximum width as needed */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .Alien-logo {
+    position: absolute;
+    top: 5px; /* Adjust the top position to your liking */
+    right: 5px; /* Adjust the right position to your liking */
+    width: 40px;
+    height: 40px;
+  }
+  
