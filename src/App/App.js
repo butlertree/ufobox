@@ -26,6 +26,8 @@ const dummySightings = [
     }
 ]
 
+const [showFavorites, setShowFavorites] = useState(false)
+
 const [sightings, setSightings] = useState([])
 
 function addSighting(newSighting){
@@ -57,14 +59,35 @@ getSightings();
 
 }, [])
 
+function toggleFavorite(id) {
+  // Find the sighting with the given ID and toggle its favorite status
+  const updatedSightings = sightings.map((sighting) => {
+    if (sighting.id === id) {
+      return {
+        ...sighting,
+        isFavorite: !sighting.isFavorite, // Toggle the favorite status
+      };
+    }
+    return sighting;
+  });
+
+  setSightings(updatedSightings); //changed the favorite state of the sightings array
+}
+
+// Filter sightings based on the showFavorites state if showFavorites true filter if false show all sightings.  
+const filteredSightings = showFavorites ? sightings.filter((sighting) => sighting.isFavorite) : sightings;
+
   return (
 
   <main className='App'>
       <h1 className='bigHeading'>SIGHTINGS</h1>
       <img src={logo} alt='App Logo' className='App-logo'/>
       <Form addSighting={addSighting}/>
+      <button onClick={() => setShowFavorites(!showFavorites)}>
+      {showFavorites ? 'Show All Sightings' : 'Show Favorites Only'}
+      </button>
       {!sightings.length && <h2>No Sightings yet -- add some!</h2> }
-      <Sightings sightings={sightings} deleteSighting={deleteSighting}/>
+      <Sightings sightings={filteredSightings} deleteSighting={deleteSighting} toggleFavorite={toggleFavorite}/>
 
 
   </main>

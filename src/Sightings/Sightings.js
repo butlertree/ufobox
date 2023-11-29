@@ -2,7 +2,7 @@ import './Sightings.css';
 import Card from '../Card/Card';
 
 
-function Sightings({sightings, deleteSighting}){
+function Sightings({sightings, deleteSighting, toggleFavorite}){
 
     const sightingCards = sightings.map(sighting => {
 
@@ -12,8 +12,9 @@ function Sightings({sightings, deleteSighting}){
                 description={sighting.description}
                 id={sighting.id}
                 key={sighting.id}
+                isFavorite={sighting.isFavorite}
+                toggleFavorite={() => toggleFavorite(sighting.id)} // Pass the sighting ID to toggleFavorite
                 deleteSighting={deleteSighting}
-
 
             />
 
